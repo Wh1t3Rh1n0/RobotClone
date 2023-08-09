@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ "$2" == "" ] || [ "$1" == "-h" ] || [ "$1" == "--help" ] ; then
+    echo "RobotClone - by Wh1t3Rh1n0, 2023"
+    echo "=========="
+    echo "Save and reuse the command line arguments for most any command."
+    echo
+    echo "Usage: $0 <command> <config file> [optional extra arguments]"
+    exit
+fi
+
+if [ "$(which python3)" != "" ] ; then
+    PYTHON=$(which python3)
+else
+    PYTHON=$(which python)
+fi
+
+COMMAND=$1
+
+if [ "$(echo $COMMAND | grep --color=never -Ei '\.py')" != "" ] ; then
+    COMMAND="$PYTHON $1"
+fi
+
+CONFIG_FILE=$2
+
+IFS=$(echo -en "\n\b")
+
+ARGS="$(grep -vE '^[[:space:]]*$' $CONFIG_FILE | sed -E 's/^[[:space:]]*//g' | sed -E 's/[[:space:]]*#.*$//g' | grep -vE '^[[:space:]]*$' | tr '\n' ' ')"
+
+
+TZ=UTC date
+
+echo Running: $COMMAND $ARGS $3 $4 $5 $6 $7 $8 $9
+
+echo $COMMAND $ARGS $3 $4 $5 $6 $7 $8 $9 | $SHELL
