@@ -2,7 +2,7 @@
 
 *Save and reuse the configuration of most any command-line program.*
 
-![](robotclone.png)
+![](./assets/robotclone.png)
 
 ---
 
@@ -131,5 +131,5 @@ rc nmap scan_all_tcp_ports.cfg example.com
 
 ---
 
-![](rampage.png)
+![](./assets/rampage.png)
 
